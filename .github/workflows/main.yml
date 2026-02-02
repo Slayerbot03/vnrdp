@@ -9,13 +9,6 @@ jobs:
     timeout-minutes: 3600
 
     steps:
-          - name: Restore RDP Artifact
-        uses: actions/download-artifact@v4
-        continue-on-error: true
-        with:
-          name: rdp-backup
-          path: C:\
-
       - name: Configure Core RDP Settings
         run: |
           # Enable Remote Desktop and disable Network Level Authentication (if needed)
@@ -105,12 +98,6 @@ jobs:
           }
           Write-Host "TCP connectivity successful!"
 
-                - name: Backup RDP Data
-        uses: actions/upload-artifact@v4
-        with:
-          name: rdp-backup
-          path: C:\RDP-DATA
-
       - name: Maintain Connection
         run: |
           Write-Host "`n=== RDP ACCESS ==="
@@ -124,4 +111,5 @@ jobs:
               Write-Host "[$(Get-Date)] RDP Active - Use Ctrl+C in workflow to terminate"
               Start-Sleep -Seconds 300
           }
-      
+
+
